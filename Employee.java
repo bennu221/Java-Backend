@@ -1,29 +1,44 @@
-public class Employee{
-    String empId;
-    String name;
-    double salary;
+public class Employee {
 
-    Employee(String empId, String name,double salary){
-        if(empId.startsWith("EMP") && salary > 0) {
-            this.empId = empId;
-            this.name = name;
+    private String empId;
+    private String name;
+    private double salary;
+
+    public Employee(String empId, String name) {
+        this.empId = empId;
+        this.name = name;
+    }
+
+    public String getEmpId() {
+        return empId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSalary(double salary) {
+        if (salary > 0) {
             this.salary = salary;
-        }else{
-            System.out.println("Invalid Data");
-            this.empId = "EMP000";
-            this.name = "Invalid";
-            this.salary = 0;
+            System.out.println("Salary updated successfully.");
+        } else {
+            System.out.println("Invalid salary");
         }
     }
-    void display(){
-        System.out.println(empId+" " + name+" "+salary);
-    }
-    public static void main(String[] args){
-        Employee e1 = new Employee("EMP1234","Benarji",25000);
-        Employee e2 = new Employee("ABC1234","Uday",30000);
-    
-        e1.display();
-        e2.display();
-    
+
+    public static void main(String[] args) {
+
+        Employee emp = new Employee("EMP101", "Benarji");
+
+        System.out.println("Employee ID: " + emp.getEmpId());
+
+        emp.setName("Bennu");
+        System.out.println("Employee Name: " + emp.getName());
+
+        emp.setSalary(35000);
     }
 }
