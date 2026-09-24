@@ -1,45 +1,45 @@
-public class Vehicle {
+abstract class Vehiclename{
     String brand;
-    int speed;
-
-    Vehicle(String brand, int speed) {
+    String model;
+    Vehiclename(String brand, String model){
         this.brand = brand;
-        this.speed = speed;
+        this.model = model;
     }
-
-    void display() {
-        System.out.println("Brand : " + brand);
-        System.out.println("Speed : " + speed + " km/h");
+    void showDetails(){
+        System.out.println("Brand: " + brand);
+        System.out.println("Model: " + model);
     }
-
+    abstract String fuelType();
+}
+class petrolcar extends Vehiclename{
+    petrolcar(String brand, String model){
+        super(brand, model);
+    }
+    @Override
+    String fuelType(){
+        return "Petrol";
+    }
+}
+class electriccar extends Vehiclename{
+    electriccar(String brand, String model){
+        super(brand, model);
+    }
+    @Override
+    String fuelType(){
+        return "Electric";
+    }
+}
+public class Vehicle{
     public static void main(String[] args) {
-        ElectricCar car = new ElectricCar("Tesla", 180, "Electric", 75);
+        Vehiclename petrolCar = new petrolcar("Toyota", "Innova");
+        Vehiclename electricCar = new electriccar("Tesla", "Model S");
 
-        car.display();
-        System.out.println("Fuel Type : " + car.fuelType);
-        System.out.println("Battery   : " + car.batteryCapacity + " kWh");
-        car.charge();
-    }
-}
+        petrolCar.showDetails();
+        System.out.println("Fuel Type: " + petrolCar.fuelType());
 
-class Car extends Vehicle {
-    String fuelType;
+        System.out.println();
 
-    Car(String brand, int speed, String fuelType) {
-        super(brand, speed);
-        this.fuelType = fuelType;
-    }
-}
-
-class ElectricCar extends Car {
-    int batteryCapacity;
-
-    ElectricCar(String brand, int speed, String fuelType, int batteryCapacity) {
-        super(brand, speed, fuelType);
-        this.batteryCapacity = batteryCapacity;
-    }
-
-    void charge() {
-        System.out.println("Car is Charging");
+        electricCar.showDetails();
+        System.out.println("Fuel Type: " + electricCar.fuelType());
     }
 }
